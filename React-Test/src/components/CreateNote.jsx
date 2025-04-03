@@ -1,13 +1,31 @@
+import { useState, useContext } from 'react';
+import { NotesContext } from '../context/NotesContext';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { FiEdit3, FiFileText, FiPlusCircle } from "react-icons/fi";
 
-const NoteForm = ({ title, setTitle, body, setBody, handleSubmit, darkMode }) => {
+const CreateNote = () => {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const { addNote, darkMode } = useContext(NotesContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    if (!title.trim() || !body.trim()) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    addNote(title, body);
+    toast.success('Note created successfully!');
+    navigate('/');
+  };
+
   return (
     <div
-      className={`p-6 rounded-lg shadow-lg transition ${
-        darkMode
-          ? "bg-gray-900 text-white"
-          : "bg-white text-black w-[90%] md:w-[70%] lg:w-[50%] mx-auto"
-      }`}
+      className={`p-6 relative top-60 rounded-lg shadow-lg transition ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black w-[90%] md:w-[70%] lg:w-[50%] mx-auto"}`}
     >
       <h2 className="text-2xl font-bold mb-4 text-center flex items-center justify-center gap-2">
          Create a New Note
@@ -61,4 +79,4 @@ const NoteForm = ({ title, setTitle, body, setBody, handleSubmit, darkMode }) =>
   );
 };
 
-export default NoteForm;
+export default CreateNote;

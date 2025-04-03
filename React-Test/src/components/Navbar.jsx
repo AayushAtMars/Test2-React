@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`px-8 md:px-16 py-5 flex justify-between items-center shadow-md ${
+      className={`px-8 md:px-16 py-5 flex justify-between items-center shadow-md fixed top-0 w-full ${
         darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
       }`}
     >
@@ -24,9 +24,9 @@ const Navbar = () => {
 
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className="ml-4 flex items-center gap-2 px-4 py-2 rounded-lg shadow bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition"
+          className="ml-4 flex items-center gap-2 px-4 py-2 rounded-lg shadow bg-gray-200 text-white font-bold dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition"
         >
-          {darkMode ? <FiSun className="text-yellow-400" /> : <FiMoon className="text-gray-600" />}
+          {darkMode ? <FiSun className="text-yellow-400" /> : <FiMoon className="text-gray-100" />}
           {darkMode ? "Light Mode" : "Dark Mode"}
         </button>
       </div>
